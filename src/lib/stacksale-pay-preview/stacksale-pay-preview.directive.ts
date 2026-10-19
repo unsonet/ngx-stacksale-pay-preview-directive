@@ -1,4 +1,4 @@
-// securepay-preview.directive.ts
+// stacksale-pay-preview.directive.ts
 import {
   AfterViewInit,
   Directive,
@@ -11,13 +11,13 @@ import {
   SimpleChanges
 } from '@angular/core';
 
-import { PreviewComponent as SecurePayPreview } from '@unsonet/securepay-preview'
+import { PreviewComponent as StacksalePayPreview } from '@unsonet/stacksale-pay-preview'
 
 @Directive({
-  selector: '[securepay-preview]',
+  selector: '[stacksale-pay-preview]',
   standalone: false,
 })
-export class SecurepayPreviewDirective implements AfterViewInit, OnChanges, OnDestroy {
+export class StacksalePayPreviewDirective implements AfterViewInit, OnChanges, OnDestroy {
   /** JSON config */
   @Input('config') config: any;
   @Input('previewTemplate') previewTemplate!: string;
@@ -67,20 +67,20 @@ export class SecurepayPreviewDirective implements AfterViewInit, OnChanges, OnDe
     this.createOrUpdatePreview();
   }
 
-  // ===== SecurePayPreview integration =====
+  // ===== StacksalePayPreview integration =====
 
   private getCtor(): any {
-    // Prefer window.SecurePayPreview (when lib is included as <script>)
+    // Prefer window.StacksalePayPreview (when lib is included as <script>)
     const w = window as any;
-    if (w && w.SecurePayPreview) {
-      return w.SecurePayPreview;
+    if (w && w.StacksalePayPreview) {
+      return w.StacksalePayPreview;
     } else {
-      return SecurePayPreview;
+      return StacksalePayPreview;
     }
 
     // If you also import the module somewhere and attach to window, above will catch it.
-    // Otherwise, you can import SecurePayPreview in this file and return it here (uncomment):
-    // import SecurePayPreview from 'path/to/securepay'; return SecurePayPreview;
+    // Otherwise, you can import StacksalePayPreview in this file and return it here (uncomment):
+    // import StacksalePayPreview from 'path/to/stacksale-pay'; return StacksalePayPreview;
 
     return null;
   }
@@ -89,7 +89,7 @@ export class SecurepayPreviewDirective implements AfterViewInit, OnChanges, OnDe
 
     const ctor = this.getCtor();
     if (!ctor) {
-      console.error('SecurepayPreviewDirective: SecurePayPreview constructor not found on window. Make sure the script is loaded or import the class and attach to window.SecurePayPreview.');
+      console.error('StacksalePayPreviewDirective: StacksalePayPreview constructor not found on window. Make sure the script is loaded or import the class and attach to window.StacksalePayPreview.');
       return;
     }
 
@@ -102,7 +102,7 @@ export class SecurepayPreviewDirective implements AfterViewInit, OnChanges, OnDe
           return;
         } catch (err) {
           // fallback to recreate below
-          console.warn('SecurepayPreviewDirective: updateData(...) failed, recreating instance', err);
+          console.warn('StacksalePayPreviewDirective: updateData(...) failed, recreating instance', err);
         }
       }
       // else destroy and recreate
@@ -119,7 +119,7 @@ export class SecurepayPreviewDirective implements AfterViewInit, OnChanges, OnDe
           saveInputStates: this.saveInputStates
         });
       } catch (err) {
-        console.error('SecurepayPreviewDirective: failed to instantiate SecurePayPreview', err);
+        console.error('StacksalePayPreviewDirective: failed to instantiate StacksalePayPreview', err);
         this.previewInstance = null;
         return;
       }
@@ -144,7 +144,7 @@ export class SecurepayPreviewDirective implements AfterViewInit, OnChanges, OnDe
       try {
         this.previewInstance.destroy();
       } catch (err) {
-        console.warn('SecurepayPreviewDirective: error while calling destroy()', err);
+        console.warn('StacksalePayPreviewDirective: error while calling destroy()', err);
       }
     }
 

@@ -1,8 +1,8 @@
 export default {
-  displayName: 'ngx-securepay-preview-directive',
+  displayName: 'ngx-stacksale-pay-preview-directive',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/libs/ngx-securepay-preview-directive',
+  coverageDirectory: '../../coverage/libs/ngx-stacksale-pay-preview-directive',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

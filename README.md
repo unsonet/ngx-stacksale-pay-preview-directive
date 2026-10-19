@@ -1,8 +1,8 @@
-# `@unsonet/ngx-securepay-preview-directive`
+# `@unsonet/ngx-stacksale-pay-preview-directive`
 
-Angular directive wrapper for the native `SecurePayPreview` library.
+Angular directive wrapper for the native `StacksalePayPreview` library.
 
-This package allows you to use the standalone `SecurePayPreview` renderer inside Angular applications without rewriting the renderer itself in Angular.
+This package allows you to use the standalone `StacksalePayPreview` renderer inside Angular applications without rewriting the renderer itself in Angular.
 
 The directive attaches the native renderer to any HTML element and forwards native custom events to Angular outputs.
 
@@ -10,7 +10,7 @@ The directive attaches the native renderer to any HTML element and forwards nati
 
 # Features
 
-* Angular wrapper around native `SecurePayPreview`
+* Angular wrapper around native `StacksalePayPreview`
 * Works with JSON-based form configuration
 * Supports live updates
 * Forwards native events as Angular outputs
@@ -25,25 +25,25 @@ The directive attaches the native renderer to any HTML element and forwards nati
 Install the package:
 
 ```bash
-npm install @unsonet/ngx-securepay-preview-directive
+npm install @unsonet/ngx-stacksale-pay-preview-directive
 ```
 
 or
 
 ```bash
-yarn add @unsonet/ngx-securepay-preview-directive
+yarn add @unsonet/ngx-stacksale-pay-preview-directive
 ```
 
 ---
 
 # Requirements
 
-The directive expects the native `SecurePayPreview` constructor to be available on `window`.
+The directive expects the native `StacksalePayPreview` constructor to be available on `window`.
 
 Example:
 
 ```ts
-window.SecurePayPreview = SecurePayPreview;
+window.StacksalePayPreview = StacksalePayPreview;
 ```
 
 You can expose it either:
@@ -62,7 +62,7 @@ Add the standalone bundle to `angular.json`:
 ```json
 {
   "scripts": [
-    "src/assets/securepay-preview.js"
+    "src/assets/stacksale-pay-preview.js"
   ]
 }
 ```
@@ -70,7 +70,7 @@ Add the standalone bundle to `angular.json`:
 The bundle must expose:
 
 ```js
-window.SecurePayPreview
+window.StacksalePayPreview
 ```
 
 ---
@@ -80,9 +80,9 @@ window.SecurePayPreview
 In your Angular application bootstrap:
 
 ```ts
-import SecurePayPreview from '@unsonet/securepay-preview';
+import StacksalePayPreview from '@unsonet/stacksale-pay-preview';
 
-(window as any).SecurePayPreview = SecurePayPreview;
+(window as any).StacksalePayPreview = StacksalePayPreview;
 ```
 
 ---
@@ -92,11 +92,11 @@ import SecurePayPreview from '@unsonet/securepay-preview';
 ## NgModule-based app
 
 ```ts
-import { SecurepayPreviewDirective } from '@unsonet/ngx-securepay-preview-directive';
+import { StacksalePayPreviewDirective } from '@unsonet/ngx-stacksale-pay-preview-directive';
 
 @NgModule({
   declarations: [
-    SecurepayPreviewDirective
+    StacksalePayPreviewDirective
   ]
 })
 export class AppModule {}
@@ -110,7 +110,7 @@ export class AppModule {}
 
 ```html
 <div
-  securepay-preview
+  stacksale-pay-preview
   [config]="promotionData"
   [templateID]="templateID"
   (templateUpdated)="onTemplateUpdated($event)"
@@ -174,7 +174,7 @@ export class DemoComponent {
 The directive internally creates:
 
 ```ts
-new SecurePayPreview({
+new StacksalePayPreview({
   promotionData,
   previewElement,
   templateID
@@ -219,14 +219,14 @@ become Angular outputs:
 Recommended structure:
 
 ```text
-securepay-preview-core
+stacksale-pay-preview-core
     ↓
-ngx-securepay-preview-directive
+ngx-stacksale-pay-preview-directive
 ```
 
 Where:
 
-* `securepay-preview-core` contains rendering logic
+* `stacksale-pay-preview-core` contains rendering logic
 * Angular directive is only a wrapper
 
 ---

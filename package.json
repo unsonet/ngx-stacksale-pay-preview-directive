@@ -1,5 +1,5 @@
 {
-  "name": "@unsonet/ngx-securepay-preview-directive",
+  "name": "@unsonet/ngx-stacksale-pay-preview-directive",
   "version": "0.1.0",
   "peerDependencies": {
     "@angular/common": ">=19.0.0 <22.0.0",
